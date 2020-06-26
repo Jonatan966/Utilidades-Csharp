@@ -25,6 +25,14 @@ namespace JoinImages.Classes
         }
 
         /// <summary>
+        /// Esta função é responsável por limpar a lista de imagens
+        /// </summary>
+        public void Clear()
+        {
+            ImageList.Clear();
+        }
+
+        /// <summary>
         /// Esta função é responsável por criar um grid de imagens em apenas uma direção (horizontal ou vertical)
         /// </summary>
         /// <param name="type">Tipo de criação de grid</param>
