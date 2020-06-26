@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JoinImages.Classes
 {
-    public class JoinImages
+    public class JoinImagesClass
     {
         private List<Image> ImageList = new List<Image>();
         public enum JoinType { Horizontal, Vertical }
