@@ -30,7 +30,7 @@ namespace JoinImages.Classes
         /// <param name="type">Tipo de criação de grid</param>
         public Image JoinImagesFlat(JoinType type)
         {
-            Bitmap imgFinal = new Bitmap(0,0);
+            Bitmap imgFinal = null;
             if (ImageList.Count > 0)
             {
                 if (type == JoinType.Horizontal)
@@ -65,7 +65,7 @@ namespace JoinImages.Classes
         /// <param name="type">Tipo de criação de grid</param>
         public Image JoinImagesFlat(JoinType type, int imgWidth, int imgHeight)
         {
-            Bitmap imgFinal = new Bitmap(0, 0);
+            Bitmap imgFinal = null;
             if (ImageList.Count > 0)
             {
                 if (type == JoinType.Horizontal)
@@ -75,8 +75,8 @@ namespace JoinImages.Classes
                     int width = 0;
                     foreach (Image item in ImageList)
                     {
-                        g.DrawImage(item, width, 0);
-                        width += item.Width;
+                        g.DrawImage(new Bitmap(item, imgWidth, imgHeight), width, 0);
+                        width += imgWidth;
                     }
                 }
                 else
@@ -87,7 +87,7 @@ namespace JoinImages.Classes
                     foreach (Image item in ImageList)
                     {
                         g.DrawImage(new Bitmap(item,imgWidth, imgHeight), 0, height);
-                        height += item.Height;
+                        height += imgHeight;
                     }
                 }
             }
@@ -101,21 +101,18 @@ namespace JoinImages.Classes
         /// <param name="verticalImages">Quantidade de imagens na vertical</param>
         /// <param name="imgWidth">Largura padrão dos itens do grid</param>
         /// <param name="imgHeight">Altura padrão dos itens do grid</param>
-        public Image JoinImagesGrid(int horizontalImages, int verticalImages, int imgWidth, int imgHeight)
+        public Image JoinImagesDynamicGrid(int horizontalImages, int verticalImages, int imgWidth, int imgHeight)
         {
             Bitmap imgFinal = new Bitmap(imgWidth * horizontalImages, imgHeight * verticalImages);
             Graphics g = Graphics.FromImage(imgFinal);
-            if (horizontalImages * verticalImages <= ImageList.Count)
+            int count = 0;
+            for (int y = 0; y < verticalImages; y++)
             {
-                int count = 0;
-                for (int y = 0; y < verticalImages; y++)
+                for (int x = 0; x < horizontalImages; x++)
                 {
-                    for (int x = 0; x < horizontalImages; x++)
-                    {
-                        if (count < ImageList.Count)
-                            g.DrawImage(new Bitmap(ImageList[count], imgWidth, imgHeight), imgWidth * x, imgHeight * y);
-                        count++;
-                    }
+                    if (count < ImageList.Count)
+                        g.DrawImage(new Bitmap(ImageList[count], imgWidth, imgHeight), imgWidth * x, imgHeight * y);
+                    count++;
                 }
             }
             return imgFinal;
