@@ -25,6 +25,15 @@ namespace JoinImages.Classes
         }
 
         /// <summary>
+        /// Função responsável por retornar o tamanho da lista de imagens
+        /// </summary>
+        /// <returns></returns>
+        public int CountImages()
+        {
+            return ImageList.Count;
+        }
+
+        /// <summary>
         /// Esta função é responsável por limpar a lista de imagens
         /// </summary>
         public void Clear()
