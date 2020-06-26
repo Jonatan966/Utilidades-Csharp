@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinImages.Classes", "JoinImages.Classes\JoinImages.Classes.csproj", "{0CEE212E-F0C2-45F9-B9A8-F8E2E835D96B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinImages.TesteVisual", "JoinImages.TesteVisual\JoinImages.TesteVisual.csproj", "{D3E4A498-CF56-499C-AC54-B7B92AED099E}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CEE212E-F0C2-45F9-B9A8-F8E2E835D96B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CEE212E-F0C2-45F9-B9A8-F8E2E835D96B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CEE212E-F0C2-45F9-B9A8-F8E2E835D96B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CEE212E-F0C2-45F9-B9A8-F8E2E835D96B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E4A498-CF56-499C-AC54-B7B92AED099E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E4A498-CF56-499C-AC54-B7B92AED099E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E4A498-CF56-499C-AC54-B7B92AED099E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E4A498-CF56-499C-AC54-B7B92AED099E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
