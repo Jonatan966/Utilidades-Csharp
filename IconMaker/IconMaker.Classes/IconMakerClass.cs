@@ -94,6 +94,21 @@ namespace IconMaker.Classes
                 }
             }
         }
+
+        /// <summary>
+        /// Este método é responsável por converter um conjunto de imagens para icones,
+        /// e em seguida salvá-las no diretório indicado.
+        /// </summary>
+        /// <param name="destiny">Diretório de salvamento dos icones</param>
+        /// <param name="iconSize">Tamanho dos icones (valor máximo: 256)</param>
+        /// <param name="img">Imagens a serem convertidas</param>
+        public static void ConvertAndSaveImages(string destiny, int iconSize, List<Image> images)
+        {
+            ConvertImages(iconSize, images).ForEach((img) => {
+                string fileName = $"{Guid.NewGuid()}-{DateTime.Now.TimeOfDay:hhmmssffffff}.ico";
+                img.Save(new FileStream(destiny+ $@"\{fileName}.ico", FileMode.Create)); 
+            });
+        }
     }
 
 }
