@@ -61,6 +61,22 @@ namespace IconMaker.Classes
         }
 
         /// <summary>
+        /// Este método é responsável por converter um conjunto de imagens.
+        /// </summary>
+        /// <param name="iconSize">Tamanho dos icones (valor máximo: 256)</param>
+        /// <param name="img">Imagens a serem convertidas</param>
+        /// <returns>Retorna uma <see cref="List{Icon}"/> contendo os resultados da conversão</returns>
+        public static List<Icon> ConvertImages(int iconSize, List<Image> img)
+        {
+            List<Icon> results = new List<Icon>();
+            foreach (Image image in img)
+            {
+                results.Add(ConvertImage(iconSize, image));
+            }
+            return results;
+        }
+
+        /// <summary>
         /// Este método é responsável por converter um conjunto de imagens para icones,
         /// e em seguida salvá-las no diretório indicado.
         /// </summary>
