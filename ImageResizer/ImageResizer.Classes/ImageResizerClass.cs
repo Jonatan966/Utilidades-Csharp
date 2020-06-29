@@ -8,19 +8,16 @@ namespace ImageResizer.Classes
 {
     public static class ImageResizerClass
     {
-        public enum ImagesFormat { PNG, JPEG, BMP }
-        private static string[] imgsFormat = new string[] { "png", "jpg", "bmp" };
-
         /// <summary>
         /// Este método é responsável por salvar uma imagem no diretório indicado
         /// </summary>
         /// <param name="img">Imagem a ser salva</param>
         /// <param name="destiny">Diretório onde a imagem será armazenada</param>
         /// <param name="imageFormat">Formato da imagem</param>
-        private static void SaveImage(Image img, string destiny, ImagesFormat imageFormat)
+        private static void SaveImage(Image img, string destiny, ImageFormat imageFormat)
         {
-            string fileName = $@"\{Guid.NewGuid()}-{DateTime.Now.TimeOfDay:hhmmssffffff}.{imgsFormat[(int)imageFormat]}";
-            img.Save($@"{destiny}\{fileName}");
+            string fileName = $@"\{Guid.NewGuid()}-{DateTime.Now.TimeOfDay:hhmmssffffff}.{imageFormat}";
+            img.Save($@"{destiny}\{fileName}", imageFormat);
         }
 
         #region Resize Image Exact
@@ -57,7 +54,7 @@ namespace ImageResizer.Classes
         /// <param name="destHeight">Altura final da imagem</param>
         /// <param name="destiny">Local onde a imagem será salva</param>
         /// <param name="imagesFormat">Formato da imagem</param>
-        public static void ResizeAndSaveImageExact(Image img, int destWidth, int destHeight, string destiny, ImagesFormat imagesFormat)
+        public static void ResizeAndSaveImageExact(Image img, int destWidth, int destHeight, string destiny, ImageFormat imagesFormat)
         {
             SaveImage(ResizeImageExact(img, destWidth, destHeight), destiny, imagesFormat);
         }
@@ -71,8 +68,9 @@ namespace ImageResizer.Classes
         /// <returns>Retorna uma lista de imagens redimensionadas</returns>
         public static List<Image> ResizeImagesExact(List<Image> imgs, int destWidth, int destHeight)
         {
-            imgs.ForEach(img => { img = ResizeImageExact(img, destWidth, destHeight); });
-            return imgs;
+            List<Image> final = new List<Image>();
+            imgs.ForEach(img => { final.Add(ResizeImageExact(img, destWidth, destHeight)); });
+            return final;
         }
 
         /// <summary>
@@ -84,7 +82,7 @@ namespace ImageResizer.Classes
         /// <param name="destHeight">Altura final das imagens</param>
         /// <param name="destiny">Local onde as imagens serão salvas</param>
         /// <param name="imagesFormat">Formato das imagens</param>
-        public static void ResizeAndSaveImagesExact(List<Image> imgs, int destWidth, int destHeight, string destiny, ImagesFormat imagesFormat)
+        public static void ResizeAndSaveImagesExact(List<Image> imgs, int destWidth, int destHeight, string destiny, ImageFormat imagesFormat)
         {
             ResizeImagesExact(imgs, destWidth, destHeight).ForEach(img => {
                 SaveImage(img, destiny, imagesFormat);
@@ -115,7 +113,7 @@ namespace ImageResizer.Classes
         /// <param name="percent">Porcentagem do redimensionamento</param>
         /// <param name="destiny">Local onde a imagem será salva</param>
         /// <param name="imagesFormat">Formato da imagem</param>
-        public static void ResizeAndSaveImageInPercent(Image img, int percent, string destiny, ImagesFormat imagesFormat)
+        public static void ResizeAndSaveImageInPercent(Image img, int percent, string destiny, ImageFormat imagesFormat)
         {
             SaveImage(ResizeImageInPercent(img, percent), destiny, imagesFormat);
         }
@@ -128,8 +126,9 @@ namespace ImageResizer.Classes
         /// <returns>Retorna uma lista de imagens redimensionadas</returns>
         public static List<Image> ResizeImagesInPercent(List<Image> imgs, int percent)
         {
-            imgs.ForEach((img) => { img = ResizeImageInPercent(img, percent); });
-            return imgs;
+            List<Image> final = new List<Image>();
+            imgs.ForEach((img) => { final.Add(ResizeImageInPercent(img, percent)); });
+            return final;
         }
 
         /// <summary>
@@ -140,7 +139,7 @@ namespace ImageResizer.Classes
         /// <param name="percent">Porcentagem do redimensionamento</param>
         /// <param name="destiny">Local onde as imagens serão salvas</param>
         /// <param name="imagesFormat">Formato das imagens</param>
-        public static void ResizeAndSaveImagesInPercent(List<Image> imgs, int percent, string destiny, ImagesFormat imagesFormat)
+        public static void ResizeAndSaveImagesInPercent(List<Image> imgs, int percent, string destiny, ImageFormat imagesFormat)
         {
             ResizeImagesInPercent(imgs, percent).ForEach(img => {
                 SaveImage(img, destiny, imagesFormat);
